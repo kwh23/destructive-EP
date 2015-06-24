@@ -1,0 +1,21 @@
+#N canvas 578 433 450 300 10;
+#X obj 102 115 expr ($f1*$f2/127.0) + $f3;
+#X obj 191 88 f \$1;
+#X obj 281 89 f \$2;
+#X obj 350 60 loadbang;
+#X obj 102 179 outlet;
+#X obj 102 3 inlet number;
+#X text 11 236 scale a midi control input (range 0-127) to an interval
+and offset;
+#X text 211 61 range;
+#X text 325 88 <- offset;
+#X obj 191 24 inlet range;
+#X obj 281 40 inlet offset;
+#X connect 0 0 4 0;
+#X connect 1 0 0 1;
+#X connect 2 0 0 2;
+#X connect 3 0 1 0;
+#X connect 3 0 2 0;
+#X connect 5 0 0 0;
+#X connect 9 0 1 0;
+#X connect 10 0 2 0;

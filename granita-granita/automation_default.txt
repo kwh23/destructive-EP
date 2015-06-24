@@ -1,0 +1,12 @@
+automation_load rec_start 64;
+automation_load main_control 63;
+automation_load main_vol 7;
+automation_load stereo_spread 18;
+automation_load pitch_min 16;
+automation_load pitch_max 17;
+automation_load dur_min 14;
+automation_load dur_max 15;
+automation_load speed_min 12;
+automation_load speed_max 13;
+automation_load pos_end 11;
+automation_load pos_begin 10;
