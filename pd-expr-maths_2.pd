@@ -1,0 +1,35 @@
+#N canvas 514 120 848 565 10;
+#X obj 245 468 dac~;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array array1 100 float 0;
+#X coords 0 1 100 -1 200 140 1;
+#X restore 602 58 graph;
+#X obj 543 371 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X obj 524 490 tabwrite~ array1;
+#X obj 521 402 metro 500;
+#X obj 266 163 osc~ 220;
+#X floatatom 419 137 5 0 0 0 - - -;
+#X obj 12 199 expr~ pow($v1 \, 4) * if($v1 > 0 \, 1 \, -1);
+#X obj 264 251 expr~ if($v1 > $f2 \, pow($f2 - ($v1 - $f2) \, $f3)
+\, if($v1 < -1*$f2 \, -1*$f2 + (-1*$f2 - $v1) \, $v1));
+#X floatatom 501 141 5 0 0 0 - - -;
+#X obj 314 338 expr~ if($v1 > $f2 \, pow($f2 - ($v1 - $f2) \, $f3)
+\, if($v1 < -1*$f2 \, -1*$f2 + (-1*$f2 - $v1) \, $v1));
+#X obj 709 270 vsl 15 128 0 127 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X obj 763 279 vsl 15 128 0 127 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X floatatom 492 300 5 0 0 0 - - -;
+#X floatatom 647 282 5 0 0 0 - - -;
+#X connect 2 0 4 0;
+#X connect 4 0 3 0;
+#X connect 5 0 7 0;
+#X connect 5 0 8 0;
+#X connect 6 0 8 1;
+#X connect 8 0 10 0;
+#X connect 9 0 8 2;
+#X connect 10 0 0 0;
+#X connect 10 0 3 0;
+#X connect 13 0 10 1;
+#X connect 14 0 10 2;
