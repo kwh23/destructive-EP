@@ -1,9 +1,6 @@
-#N canvas 165 169 813 629 10;
-#X msg 10 54 open /Users/kieran/Desktop/destructive_EP/Mist_form_wip.wav
-\$1;
-#N canvas 916 209 699 522 sample 1;
+#N canvas 386 133 813 629 10;
+#N canvas 916 209 699 522 sample 0;
 #X obj 133 230 phasor~;
-#X obj 133 62 openpanel;
 #X obj 133 106 soundfiler;
 #X floatatom 149 131 12 0 0 0 - - -, f 12;
 #X obj 133 179 expr 44100 / $f1;
@@ -45,45 +42,68 @@
 #X coords 0 1 5.70822e+06 -1 200 140 1 0 0;
 #X restore 103 57 graph;
 #X restore 487 172 pd channel R;
-#X obj -22 317 tabwrite~;
-#X msg 133 84 read -maxsize 7.938e+06 -resize \$1 channelL channelR
-;
 #X obj 318 262 metro 1;
 #X obj 42 382 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X obj 207 383 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 42 361 threshold~ 0.9999 100 0.1 100;
-#X connect 0 0 7 0;
-#X connect 0 0 35 0;
-#X connect 2 0 3 0;
+#X obj 76 186 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 436 230 r bang;
+#N canvas 0 22 450 300 chnl 0;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array chnlLx 5.70822e+06 float 2;
+#X coords 0 1 5.70822e+06 -1 200 140 1;
+#X restore 102 55 graph;
+#X restore 487 191 pd chnl Lx;
+#N canvas 0 22 450 300 chnl 0;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array chnlRx 5.70822e+06 float 2;
+#X coords 0 1 5.70822e+06 -1 200 140 1;
+#X restore 105 74 graph;
+#X restore 486 210 pd chnl Rx;
+#X msg 133 73 read -maxsize 7.938e+06 -resize \$1 channelL channelR
+chnlLx chnlRx;
+#X msg 13 225 set channelL;
+#X msg 16 289 set chnlLx;
+#X msg 19 314 set chnlRx;
+#X msg 18 247 set channelR;
+#X connect 0 0 6 0;
+#X connect 0 0 32 0;
+#X connect 1 0 2 0;
+#X connect 1 0 3 0;
 #X connect 2 0 4 0;
 #X connect 3 0 5 0;
-#X connect 4 0 6 0;
-#X connect 4 0 0 0;
-#X connect 6 0 0 0;
-#X connect 7 0 9 0;
-#X connect 7 0 10 0;
-#X connect 7 0 17 0;
-#X connect 8 0 7 1;
+#X connect 3 0 0 0;
+#X connect 5 0 0 0;
+#X connect 6 0 8 0;
+#X connect 6 0 9 0;
+#X connect 6 0 16 0;
+#X connect 7 0 6 1;
+#X connect 8 0 10 0;
 #X connect 9 0 11 0;
-#X connect 10 0 12 0;
-#X connect 13 0 31 0;
-#X connect 14 0 15 0;
-#X connect 16 0 32 0;
+#X connect 12 0 37 0;
+#X connect 13 0 14 0;
+#X connect 15 0 29 0;
+#X connect 16 0 17 0;
 #X connect 17 0 18 0;
-#X connect 18 0 19 0;
-#X connect 19 0 21 0;
-#X connect 19 0 27 0;
-#X connect 20 0 18 1;
-#X connect 23 0 0 0;
-#X connect 24 0 16 0;
-#X connect 26 0 0 1;
-#X connect 31 0 2 0;
-#X connect 32 0 17 0;
-#X connect 33 0 25 0;
-#X connect 35 0 33 0;
-#X connect 35 1 34 0;
+#X connect 18 0 20 0;
+#X connect 18 0 26 0;
+#X connect 19 0 17 1;
+#X connect 22 0 0 0;
+#X connect 23 0 15 0;
+#X connect 25 0 0 1;
+#X connect 29 0 16 0;
+#X connect 30 0 24 0;
+#X connect 32 0 30 0;
+#X connect 32 1 31 0;
+#X connect 33 0 5 0;
+#X connect 37 0 1 0;
+#X connect 38 0 8 0;
+#X connect 39 0 8 0;
+#X connect 40 0 9 0;
+#X connect 41 0 9 0;
 #X restore 75 156 pd sample;
 #X obj 126 180 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
@@ -120,6 +140,7 @@ if($v1 < -1*$f2 \, -1*$f2 + (-1*$f2 - $v1) \, $v1));
 #X obj 380 208 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X msg 288 143 set \$1 100 \$1 100;
+#X msg 22 257 0;
 #X connect 0 0 2 0;
 #X connect 2 0 3 0;
 #X connect 3 0 6 0;
@@ -145,6 +166,7 @@ if($v1 < -1*$f2 \, -1*$f2 + (-1*$f2 - $v1) \, $v1));
 #X connect 22 0 8 0;
 #X connect 23 0 25 0;
 #X connect 25 0 21 0;
+#X connect 26 0 1 0;
 #X restore 141 262 pd Skip;
 #X floatatom 195 230 5 0 0 0 - - -, f 5;
 #N canvas 35 66 592 433 Hann-window 0;
@@ -248,25 +270,25 @@ four. This window now computes blocks of 512 samples at intervals of
 #X connect 23 0 4 1;
 #X connect 23 0 5 1;
 #X restore 75 382 pd fft-analysis;
-#N canvas 936 538 604 304 gain 1;
+#N canvas 936 538 604 304 gain 0;
 #N canvas 0 22 450 300 (subpatch) 0;
 #X array gain 512 float 3;
-#A 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
-1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
-1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
-1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
-1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
-1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
-1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
-1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
-1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
-1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
-1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
-1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
-1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
-1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
-1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
-1 1 1 1 1;
+#A 0 0 0.8 0 1 0 0 0 1 0 0 0.7 0 0 0 1 0 0 0.5 0 0 0 0 1 0 0 0 0 0
+0 0 0 1 0 0 0 0.4 0 0 0 0 0 0 0 1 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0;
 #X coords 0 1 512 -0.01 512 100 1 0 0;
 #X restore 55 46 graph;
 #X text 44 100 0;
@@ -332,17 +354,30 @@ four. This window now computes blocks of 512 samples at intervals of
 #X restore 133 409 pd fft-analysis;
 #X obj 80 465 dac~;
 #X msg 257 230 \; gain 0 0 0 0 1 0 0 0 1 0 0 0 0 0 0 1;
-#X msg 359 272 \; gain 0 0 0.8 0 1 0 0 0 1 0 0 0.7 0 0 0 1 0 0 0.5
+#X msg 361 273 \; gain 0 0 0.8 0 1 0 0 0 1 0 0 0.7 0 0 0 1 0 0 0.5
 0 0 0 0 1 0 0 0 0 0 0 0 0 1 0 0 0 0.4 0 0 0 0 0 0 0 1 0 0 0 1;
-#X connect 0 0 1 0;
-#X connect 1 0 5 0;
-#X connect 1 0 12 0;
-#X connect 1 1 14 0;
-#X connect 1 2 2 0;
-#X connect 2 0 3 0;
-#X connect 3 0 1 1;
-#X connect 6 0 5 1;
-#X connect 8 0 10 0;
-#X connect 11 0 10 0;
-#X connect 12 0 15 0;
-#X connect 14 0 15 1;
+#X obj -7 19 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj -36 398 tabwrite~ chnlLx;
+#X msg -2 368 stop;
+#X obj -29 434 tabwrite~ chnlRx;
+#X msg 10 54 open /Users/kieran/Desktop/destructive_EP/Mist_form_wip.wav
+;
+#X connect 0 0 4 0;
+#X connect 0 0 11 0;
+#X connect 0 1 13 0;
+#X connect 0 2 1 0;
+#X connect 1 0 2 0;
+#X connect 1 0 19 0;
+#X connect 2 0 0 1;
+#X connect 5 0 4 1;
+#X connect 7 0 9 0;
+#X connect 10 0 9 0;
+#X connect 11 0 14 0;
+#X connect 11 0 18 0;
+#X connect 13 0 14 1;
+#X connect 13 0 20 0;
+#X connect 17 0 21 0;
+#X connect 19 0 20 0;
+#X connect 19 0 18 0;
+#X connect 21 0 0 0;
